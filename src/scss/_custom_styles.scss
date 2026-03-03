@@ -1,0 +1,459 @@
+.ltn__main-menu>ul>li,
+.ltn__utilize-menu>ul>li {
+    &.active {
+        a {
+            color: var(--white) !important;
+            font-weight: bold;
+        }
+    }
+}
+
+.footer-menu ul li {
+    &.active {
+        a {
+            color: var(--white) !important;
+            font-weight: bold;
+        }
+    }
+}
+
+.ltn__utilize {
+    background-color: var(--ltn__primary-color-blue);
+
+    .ltn__utilize-close {
+        color: #fff;
+    }
+
+    ul {
+        li {
+            color: #FFFFFF;
+        }
+    }
+}
+
+.banner_bg_1 {
+    background-image: url('/assets/images/slider/banner_bg_1.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    @media (max-width: 767px) {
+        background-image: url('/assets/images/slider/banner_bg_1_sm.png');
+    }
+}
+
+.ltn__car-dealer-form-tab {
+    border-radius: 8px;
+    border: 1px solid #DFDFDF;
+
+    .tab-content {
+        border-radius: 8px;
+    }
+}
+
+.homepage_form {
+    border-radius: 8px;
+    display: grid;
+    gap: 24px;
+
+    .error {
+        color: red;
+        font-size: 12px;
+        padding-left: 8px;
+    }
+
+    // Mobile
+    grid-template-columns: 1fr;
+
+    // Tablet
+    @media (min-width: 768px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    // Large screens → 5 items
+    @media (min-width: 1200px) {
+        grid-template-columns: repeat(5, 1fr);
+    }
+
+    input {
+        border-radius: 8px;
+        border: 1px solid #5B5B5B4A;
+        height: 50px;
+
+        &::placeholder {
+            color: #827B7B;
+            font-family: var(--ltn__body-font);
+            font-weight: 500;
+            font-style: Medium;
+            font-size: 14px;
+        }
+    }
+
+    .nice-select {
+        border-radius: 8px;
+        border: 1px solid #5B5B5B4A;
+        height: 50px;
+        color: #827B7B;
+        font-family: var(--ltn__body-font);
+        font-weight: 500;
+        font-style: Medium;
+        font-size: 14px;
+
+    }
+
+    button[type="submit"] {
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        @media screen and (max-width: 768px) {
+            margin: 0 auto;
+            width: 100%;
+        }
+    }
+}
+
+.ltn__list-item-half {
+    background-color: #eef6ff;
+    padding: 30px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+
+    li {
+        color: #0C3B80DB;
+        font-family: var(--ltn__body-font);
+        font-weight: 600;
+        font-size: 14px;
+
+        img {
+            width: 20px;
+            height: 20px;
+        }
+    }
+}
+
+.aboutus_section {
+    background-image: url('/assets/images/bg/aboutus_layer_bg.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.about-img-left {
+    img {
+        border-radius: 8px;
+        border: 15px solid #fff;
+        box-shadow: 0px 4px 23.7px 0px #BABABA40;
+    }
+}
+
+.counter_section {
+    background-color: var(--ltn__primary-color-blue);
+
+    img {
+        width: 46px;
+        height: 46px;
+    }
+
+    h2 {
+        color: #fff;
+    }
+
+    h6 {
+        color: #FFFFFFBA;
+    }
+
+    .col-md-3 {
+        border-right: 1px solid #FFFFFF3D;
+
+        &:last-child {
+            border: 0;
+        }
+    }
+}
+
+.bike_care_card {
+    .ltn__blog-img {
+        border-radius: 20px 20px 0 0;
+    }
+
+    .ltn__blog-brief {
+        margin-top: -10px !important;
+        border-radius: 0 0 20px 20px;
+        padding: 30px 20px 20px;
+        min-height: 250px;
+
+        @media screen and (max-width: 768px) {
+            min-height: 200px;
+        }
+
+        .ltn__blog-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #505864;
+            font-family: var(--ltn__body-font);
+            font-weight: 400;
+            font-size: 14px;
+        }
+    }
+}
+
+.reliable_bike_service_section {
+    background-image: url('/assets/images/bg/reliable_bike_service_section_bg.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    .section-subtitle {
+        background-color: #fff;
+    }
+
+    .ltn__list-item-1 {
+        padding-left: 20px;
+
+        li {
+            list-style-type: disc;
+            color: #3D3D3D;
+            font-weight: 600;
+        }
+    }
+
+    .ltn__category-item-5 {
+        border-radius: 18px;
+        box-shadow: 0px 4px 64px 0px #ACABAA26;
+
+        &:hover {
+            background-color: var(--ltn__primary-color-blue);
+
+            .category-title,
+            .category-brief {
+                color: #fff;
+            }
+
+            .category-icon {
+                img {
+
+                    &.img-default {
+                        display: none;
+                    }
+
+                    &.img-white {
+                        display: block;
+                    }
+                }
+            }
+        }
+
+        .category-icon {
+            background-color: transparent;
+            width: 46px;
+            height: 46px;
+            line-height: normal;
+
+            img {
+                width: 46px;
+                height: 46px;
+                object-fit: cover;
+                object-position: center;
+
+                &.img-default {
+                    display: block;
+                }
+
+                &.img-white {
+                    display: none;
+                }
+            }
+        }
+
+        .category-title {
+            font-size: 18px;
+            line-height: normal;
+            color: var(--ltn__primary-color-blue);
+        }
+
+        .category-brief {
+            color: #505864;
+            line-height: normal;
+            min-height: 100px;
+        }
+    }
+}
+
+.ltn__breadcrumb-area {
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.aboutusBg {
+    background-image: url('/assets/images/bg/aboutus_bg.png');
+
+    @media screen and (max-width: 768px) {
+        background-image: url('/assets/images/bg/aboutus_bg_sm.png');
+    }
+}
+
+.servicesBg {
+    background-image: url('/assets/images/bg/services_bg.png');
+
+    @media screen and (max-width: 768px) {
+        background-image: url('/assets/images/bg/services_bg_sm.png');
+    }
+}
+
+.contactBg {
+    background-image: url('/assets/images/bg/contactus_bg.png');
+
+    @media screen and (max-width: 768px) {
+        background-image: url('/assets/images/bg/contactus_bg_sm.png');
+    }
+}
+
+.clients_feedback_section {
+    background: linear-gradient(180deg, #F4F9FF 0%, #FFFFFF 100%);
+}
+
+.contact_form_section {
+    .contact_form_row {
+        background-color: #F4F9FF;
+        border-radius: 40px;
+    }
+
+    .contactus_form_details {
+        padding: 40px;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #001c39;
+        border-radius: 40px;
+
+        h4,
+        p {
+            font-family: var(--ltn__body-font);
+        }
+
+        h4 {
+            color: var(--white);
+            font-weight: 600;
+            font-size: 22px;
+        }
+
+        p {
+            color: #DFE0E1;
+            font-weight: 400;
+            font-size: 14px;
+        }
+
+        .contact_details {
+            padding: 0;
+            margin: 0;
+            margin-top: 50px;
+            min-height: 250px;
+
+            li {
+                margin: 0;
+                margin-bottom: 30px;
+                list-style-type: none;
+                color: var(--white);
+                display: flex;
+
+                img {
+                    width: 20px;
+                    height: 20px;
+                    object-fit: contain;
+                    object-position: center;
+                    margin: 0;
+                    margin-right: 12px;
+                }
+            }
+        }
+
+        .social_details {
+            padding-top: 40px;
+            border-top: 2px solid #FFFFFF4D;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            a {
+                position: relative;
+
+                img {
+                    width: 24px;
+                    height: 24px;
+                    object-fit: contain;
+                    object-position: center;
+                    margin: 0;
+                    margin-right: 24px;
+                }
+            }
+        }
+    }
+
+    .contact-form-box {
+        background-color: #F4F9FF;
+        border-radius: 0 40px 40px 0;
+
+        @media screen and (max-width: 992px) {
+            border-radius: 40px;
+        }
+    }
+
+    .contactus_form {
+
+        input[type=email],
+        input[type=password],
+        input[type=submit],
+        input[type=text],
+        .input-item .nice-select,
+        textarea {
+            height: 50px;
+            border: 0;
+            border-bottom: 2px solid #8F8F8F4D;
+            background: transparent;
+            padding-left: 0;
+
+            &::placeholder {
+                color: #595959;
+            }
+        }
+
+        .nice-select {
+            &::before {
+                content: '\f107';
+                color: #2B333F;
+                font-size: 10px;
+                top: 70%;
+            }
+
+            .current {
+                font-weight: 400;
+            }
+        }
+
+        textarea {
+            min-height: 50px;
+        }
+
+        .error {
+            color: red;
+        }
+    }
+}
+
+.lightcase-contentInner {
+    width: 600px !important;
+    height: 340px !important;
+
+    video {
+        width: 600px !important;
+        height: 340px !important;
+    }
+}

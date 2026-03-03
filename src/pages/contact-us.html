@@ -1,0 +1,95 @@
+@@include('layouts/header.html', { "active": "contactus", "pageTitle": "A2Z Bike Services", "pageDescription": "",
+"pageKeywords": "", })
+
+@@include('sections/breadcrumb.html', {"pageTitle": "Contact", "breadBg": "contactBg"})
+
+<!-- CONTACT MESSAGE AREA START -->
+<div class="ltn__contact-message-area pt-115 pb-100 contact_form_section">
+    <div class="container">
+        <div class="row contact_form_row">
+            <div class="col-12 col-lg-4 p-0 order-2">
+                <div class="contactus_form_details">
+                    <h4>Reach Out To Us</h4>
+                    <p>Fill out the form, and our team will get in touch with you</p>
+                    <ul class="contact_details">
+                        <li>
+                            <img src="/assets/icons/ringer-icon.png" alt="ringer icon">
+                            <span>+91 95536 09372</span>
+                        </li>
+                        <li>
+                            <img src="/assets/icons/envelope-icon.png" alt="envelope icon">
+                            <span>a2zbikeservices@gmail.com</span>
+                        </li>
+                        <li>
+                            <img src="/assets/icons/location-icon.png" alt="location icon">
+                            <span>
+                                12-2-37/B/10, <br> zeba Bagh, Asif nagar, <br> Hyderabad - 500028 Ts
+                            </span>
+                        </li>
+                    </ul>
+                    <div class="social_details d-none">
+                        <a href="#">
+                            <img src="/assets/icons/fb-icon.png" alt="fb icon">
+                        </a>
+                        <a href="#">
+                            <img src="/assets/icons/insta-icon.png" alt="insta icon">
+                        </a>
+                        <a href="#">
+                            <img src="/assets/icons/twitter-icon.png" alt="twitter icon">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-8 p-0 order-lg-2">
+                <div class="ltn__form-box contact-form-box">
+                    <h4>Contact Form</h4>
+                  <form action="https://formsubmit.co/a2zbikeservices@gmail.com" method="POST" id="contact-form" class="contactus_form" novalidate>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="input-item input-item-name">
+                                    <input type="text" name="contactname" placeholder="Name *" required>
+                                    <span class="error" id="contactnameError"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-item input-item-email">
+                                    <input type="email" name="contactemail" placeholder="Email Id">
+                                    <span class="error" id="contactemailError"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-item input-item-phone">
+                                    <input type="text" name="contactphone" placeholder="Mobile Number *" required>
+                                    <span class="error" id="contactphoneError"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-item">
+                                    <select class="nice-select" id="contactservice" required>
+                                        <option>Service *</option>
+                                        <option>Oil Change</option>
+                                        <option>Battery Change</option>
+                                        <option>Brake Repair</option>
+                                    </select>
+                                    <span class="error" id="contactserviceError"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-item input-item-textarea">
+                            <textarea name="contactmessage" id="contactmessage" placeholder="Description"></textarea>
+                        </div>
+                        <div class="btn-wrapper mt-0">
+                            <button class="btn theme-btn-1 btn-effect-1" type="submit">
+                                Submit
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- CONTACT MESSAGE AREA END -->
+
+
+@@include('layouts/footer.html', { "active": "contactus"})

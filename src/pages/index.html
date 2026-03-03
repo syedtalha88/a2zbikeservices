@@ -1,0 +1,1010 @@
+@@include('layouts/header.html', { "active": "home", "pageTitle": "A2Z Bike Services", "pageDescription": "",
+"pageKeywords": "", })
+
+<!-- ================= HIGH CONVERSION OFFER POPUP START ================= -->
+<style>
+.custom-booking-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    z-index: 9999;
+}
+
+.custom-booking-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.75);
+}
+
+.custom-booking-content {
+    position: relative;
+    max-width: 480px;
+    background: #ffffff;
+    padding: 40px 30px;
+    margin: auto;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 12px;
+    animation: popupFade 0.4s ease-in-out;
+    text-align: center;
+}
+
+@keyframes popupFade {
+    from { opacity: 0; transform: translateY(-60%); }
+    to { opacity: 1; transform: translateY(-50%); }
+}
+
+.offer-badge {
+    background: #e53e3e;
+    color: #fff;
+    font-weight: 700;
+    padding: 8px 18px;
+    border-radius: 50px;
+    display: inline-block;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.countdown {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #e53e3e;
+}
+
+.custom-close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 26px;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.custom-booking-content input {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.phone-wrapper {
+    display: flex;
+}
+
+.phone-prefix {
+    background: #f5f5f5;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-right: none;
+    border-radius: 5px 0 0 5px;
+    font-weight: 600;
+}
+
+.phone-input {
+    border-radius: 0 5px 5px 0;
+    border-left: none;
+}
+
+.error-text {
+    color: red;
+    font-size: 13px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.urgency-text {
+    font-size: 13px;
+    margin-bottom: 20px;
+    color: #555;
+}
+/* Popup Box */
+.custom-booking-content {
+    width: 420px;
+    max-width: 95%;
+    padding: 30px 25px;
+    border-radius: 18px;
+    background: #fff;
+    text-align: center;
+}
+
+/* Centered Compact Image */
+.offer-image-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 18px;
+}
+
+.offer-image {
+    width: 220px;        /* fixed clean size */
+    height: auto;
+    border-radius: 14px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+/* Offer Badge */
+.offer-badge {
+    display: inline-block;
+    background: linear-gradient(90deg, #ff512f, #dd2476);
+    color: #fff;
+    padding: 7px 18px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 18px;
+}
+
+/* Heading */
+.custom-booking-content h3 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+.custom-booking-content {
+    width: 420px;
+    max-width: 100%;
+    max-height: 90vh;     /* important */
+    overflow-y: auto;     /* enables scroll */
+    background: #fff;
+    border-radius: 18px;
+    padding: 30px 25px;
+}
+/* Paragraph */
+.urgency-text {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+}
+</style>
+
+<div id="bookingPopup" class="custom-booking-modal">
+    <div class="custom-booking-overlay"></div>
+
+    <div class="custom-booking-content box-shadow-1">
+        <button class="custom-close-btn" id="closePopup">&times;</button>
+     <div class="offer-image-wrapper">
+    <img src="../assets/images/offer.png" alt="Special Offer" class="offer-image">
+</div>
+        <div class="offer-badge">🔥 FLAT 40% OFF – Today Only</div>
+        <h3>Doorstep Bike Service at Discount Price</h3>
+        <p class="urgency-text">
+            Limited slots available in Hyderabad. Grab your offer before it expires.
+        </p>
+
+        <!-- <div class="countdown">
+            Offer Ends In: <span id="timer">05:00</span>
+        </div> -->
+
+        <form id="popupBookingForm" novalidate>
+            <input type="text" id="popupName" placeholder="Your Name">
+            <span class="error-text" id="nameError"></span>
+
+            <input type="text" id="popupAddress" placeholder="Your Address">
+            <span class="error-text" id="addressError"></span>
+
+            <div class="phone-wrapper">
+                <div class="phone-prefix">+91</div>
+                <input type="tel" id="popupPhone" class="phone-input"
+                       placeholder="10 Digit Mobile Number" maxlength="10">
+            </div>
+            <span class="error-text" id="phoneError"></span>
+
+            <div class="btn-wrapper text-center mt-3">
+                <button type="submit" class="btn theme-btn-1 btn-effect-1 w-100">
+                    Claim 40% Discount Now
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const popup = document.getElementById("bookingPopup");
+    const closeBtn = document.getElementById("closePopup");
+    const overlay = document.querySelector(".custom-booking-overlay");
+    const phoneInput = document.getElementById("popupPhone");
+
+    // Show after 20 sec
+    setTimeout(function () {
+        popup.style.display = "block";
+    }, 10000);
+
+    function closePopup() {
+        popup.style.display = "none";
+    }
+
+    closeBtn.addEventListener("click", closePopup);
+    overlay.addEventListener("click", closePopup);
+
+    // Phone only numbers
+    phoneInput.addEventListener("input", function () {
+        this.value = this.value.replace(/\D/g, '');
+    });
+
+    // Countdown Timer (5 min urgency)
+    let timeLeft = 300;
+    const timer = document.getElementById("timer");
+
+    const countdown = setInterval(function () {
+        let minutes = Math.floor(timeLeft / 60);
+        let seconds = timeLeft % 60;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+        timer.textContent = minutes + ":" + seconds;
+        timeLeft--;
+
+        if (timeLeft < 0) {
+            clearInterval(countdown);
+            timer.textContent = "Expired";
+        }
+    }, 1000);
+
+    // Form validation
+    document.getElementById("popupBookingForm")
+        .addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            let isValid = true;
+            const name = document.getElementById("popupName").value.trim();
+            const address = document.getElementById("popupAddress").value.trim();
+            const phone = phoneInput.value.trim();
+
+            document.getElementById("nameError").textContent = "";
+            document.getElementById("addressError").textContent = "";
+            document.getElementById("phoneError").textContent = "";
+
+            if (name === "") {
+                document.getElementById("nameError").textContent = "Name is required.";
+                isValid = false;
+            }
+
+            if (address === "") {
+                document.getElementById("addressError").textContent = "Address is required.";
+                isValid = false;
+            }
+
+            if (!/^[0-9]{10}$/.test(phone)) {
+                document.getElementById("phoneError").textContent =
+                    "Mobile number must be exactly 10 digits.";
+                isValid = false;
+            }
+
+            if (isValid) {
+                alert("🎉 Congratulations! Your 40% discount is reserved.");
+                this.reset();
+                closePopup();
+            }
+        });
+});
+</script>
+<!-- ================= HIGH CONVERSION OFFER POPUP END ================= -->
+<!-- SLIDER AREA START (slider-3) -->
+<div class="ltn__slider-area ltn__slider-3  section-bg-2">
+    <div class="ltn__slide-one-active slick-slide-arrow-1 slick-slide-dots-1">
+        <!-- ltn__slide-item -->
+        <div class="ltn__slide-item ltn__slide-item-2 ltn__slide-item-3-normal--- ltn__slide-item-3 banner_bg_1">
+            <div class="ltn__slide-item-inner text-start">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 align-self-center">
+                            <div class="slide-item-info">
+                                <div class="slide-item-info-inner ltn__slide-animation">
+                                    <h1 class="slide-title animated ">
+                                       Bike Service at <br class="d-block d-md-none">Home in Hyderabad  <br
+                                           –  class="d-block d-md-none"> Doorstep & On-Road Support
+                                    </h1>
+                                    <div class="slide-brief animated">
+                                        <p>
+                                           Professional bike servicing at your home, roadside breakdown support, and free pickup & drop anywhere in Hyderabad. Fast response. Transparent pricing. No hidden charges.
+                                        </p>
+                                    </div>
+                                    <div class="btn-wrapper animated">
+                                        <a href="https://wa.me/+919553609372" target="_blank"
+                                            class="theme-btn-1 btn btn-effect-1">
+                                          Schedule My Bike Service 
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- SLIDER AREA END -->
+
+<!-- CAR DEALER FORM AREA START -->
+<div class="ltn__car-dealer-form-area mt--65px mt-50 pb-115---">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ltn__car-dealer-form-tab">
+                    <div class="tab-content bg-white box-shadow-1 ltn__border position-relative">
+                        <div class="tab-pane fade active show" id="ltn__form_tab_1_1">
+                            <div class="car-dealer-form-inner">
+                                <form action="https://formsubmit.co/a2zbikeservices@gmail.com" method="POST"id="homePageForm" class="homepage_form ltn__car-dealer-form-box">
+                                    <div class="ltn__car-dealer-form-item ltn__custom-icon---- ltn__icon-car----">
+                                        <input type="text" name="contactname" id="contactname" placeholder="Name">
+                                        <span class="error" id="contactnameError"></span>
+                                    </div>
+                                    <div class="ltn__car-dealer-form-item ltn__custom-icon---- ltn__icon-meter----">
+                                        <input type="text" name="contactphone" id="contactphone"
+                                            placeholder="Mobile Number">
+                                        <span class="error" id="contactphoneError"></span>
+                                    </div>
+                                    <div class="ltn__car-dealer-form-item ltn__custom-icon---- ltn__icon-meter----">
+                                        <input type="text" name="contactemail" id="contactemail" placeholder="Email">
+                                        <span class="error" id="contactemailError"></span>
+                                    </div>
+                                    <div class="ltn__car-dealer-form-item ltn__custom-icon---- ltn__icon-calendar----">
+                                        <select class="nice-select" id="contactservice">
+                                            <option>Select Service</option>
+                                            <option>Oil Change</option>
+                                            <option>Battery Change</option>
+                                            <option>Brake Repair</option>
+                                        </select>
+                                        <span class="error" id="contactserviceError"></span>
+                                    </div>
+                                    <div class="ltn__car-dealer-form-item ltn__custom-icon ltn__icon-calendar">
+                                        <div class="btn-wrapper text-center mt-0">
+                                            <button type="submit" class="btn theme-btn-1 btn-effect-1">
+                                                Book Now</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- CAR DEALER FORM AREA END -->
+
+@@include('sections/aboutus-section-1.html')
+
+<!-- COUNTER UP AREA START -->
+<div class="ltn__counterup-area counter_section section-bg-1 pt-40 pb-40">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-sm-6 align-self-center">
+                <div class="ltn__counterup-item text-color-white---">
+                    <div class="counter-icon">
+                        <img src="/assets/icons/counter-icons/verified_mechanics_icon.png" alt="counter icon 1">
+                    </div>
+                    <h2>
+                        <span class="counter">15</span>
+                        <span class="counterUp-icon">+</span>
+                    </h2>
+                    <p>Verified Mechanics</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 align-self-center">
+                <div class="ltn__counterup-item text-color-white---">
+                    <div class="counter-icon">
+                        <img src="/assets/icons/counter-icons/happy_customers_icon.png" alt="counter icon 1">
+                    </div>
+                    <h2>
+                        <span class="counter">10000</span>
+                        <span class="counterUp-letter">+</span>
+                    </h2>
+                    <p>Happy Customers</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 align-self-center">
+                <div class="ltn__counterup-item text-color-white---">
+                    <div class="counter-icon">
+                        <img src="/assets/icons/counter-icons/experience_icon.png" alt="counter icon 1">
+                    </div>
+                    <h2>
+                        <span class="counter">15</span>
+                        <span class="counterUp-icon">+</span>
+                        <span class="counterUp-letter">Years</span>
+                    </h2>
+                    <p>Hands-On Experience</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 align-self-center">
+                <div class="ltn__counterup-item text-color-white---">
+                    <div class="counter-icon">
+                        <img src="/assets/icons/counter-icons/hyderabad_icon.png" alt="counter icon 1">
+                    </div>
+                    <h2>
+                        <span>Hyderabad</span>
+                    </h2>
+                    <p>City Coverage</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- COUNTER UP AREA END -->
+
+<!-- FEATURE AREA START ( Feature - 6) -->
+<div class="ltn__feature-area section-bg-1--- pt-115 pb-90 mb-120---">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title-area ltn__section-title-2--- text-center">
+                    <h6 class="section-subtitle section-subtitle-2">Our Services</h6>
+                    <h2 class="section-title">Complete Bike Care Solutions</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row ltn__custom-gutter---  justify-content-center">
+            <div class="col-lg-4 col-sm-6 col-12">
+                <div class="ltn__blog-item ltn__blog-item-3 bike_care_card">
+                    <div class="ltn__blog-img">
+                        <a href="services.html">
+                            <img src="/assets/images/bike-care/bike-care-img-1.png" alt="bike care img 1">
+                        </a>
+                    </div>
+                    <div class="ltn__blog-brief">
+                        <h3 class="ltn__blog-title">
+                            <a href="services.html">
+                                Oil Change
+                            </a>
+                        </h3>
+                        <p>Regular oil changes improve engine performance, fuel efficiency, and longevity. Our mechanics
+                            use high-quality engine
+                            oils and filters to keep your bike running smoothly, reduce wear, and ensure reliable
+                            performance for daily rides and
+                            long journeys.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 col-12">
+                <div class="ltn__blog-item ltn__blog-item-3 bike_care_card">
+                    <div class="ltn__blog-img">
+                        <a href="services.html"><img src="/assets/images/bike-care/bike-care-img-2.png"
+                                alt="bike care img 2"></a>
+                    </div>
+                    <div class="ltn__blog-brief">
+                        <h3 class="ltn__blog-title">
+                            <a href="services.html">
+                                Battery Change
+                            </a>
+                        </h3>
+                        <p>We diagnose battery issues and replace worn-out batteries with reliable options to ensure
+                            smooth starts and consistent
+                            electrical performance. Our battery service helps prevent sudden breakdowns and keeps your
+                            bike dependable in all riding
+                            conditions.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 col-12">
+                <div class="ltn__blog-item ltn__blog-item-3 bike_care_card">
+                    <div class="ltn__blog-img">
+                        <a href="services.html"><img src="/assets/images/bike-care/bike-care-img-3.png"
+                                alt="bike care img 3"></a>
+                    </div>
+                    <div class="ltn__blog-brief">
+                        <h3 class="ltn__blog-title">
+                            <a href="services.html">
+                                Brake Repair
+                            </a>
+                        </h3>
+                        <p>Our brake repair service focuses on safety and control by inspecting brake pads, discs, and
+                            fluids. We ensure responsive
+                            braking, reduced noise, and improved stopping power for confident and secure riding.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 d-flex align-items-center justify-content-center">
+                <div class="btn-wrapper animated">
+                    <a href="services.html" class="theme-btn-1 btn btn-effect-1">
+                        See More
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- FEATURE AREA END -->
+
+<!-- ABOUT US AREA START -->
+<div class="ltn__about-us-area pt-120 pb-90 reliable_bike_service_section">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-12 col-xl-6">
+                <div class="about-us-info-wrap">
+                    <div class="section-title-area ltn__section-title-2--- mb-30">
+                        <h6 class="section-subtitle section-subtitle-2">Why choose us?</h6>
+                        <h2 class="section-title">
+                            Reliable Bike Service <br /> Made Simple
+                        </h2>
+                        <p>
+                            At A2Z Bike Services, we focus on convenience, quality, and trust. From routine maintenance
+                            to urgent repairs, we make
+                            bike care easy with doorstep service and skilled professionals—so you can ride worry-free.
+                        </p>
+                    </div>
+                    <ul class="ltn__list-item-1 clearfix">
+                        <li>Doorstep service across Hyderabad</li>
+                        <li>Skilled & verified mechanics</li>
+                        <li>Transparent pricing</li>
+                    </ul>
+                    <div class="btn-wrapper animated">
+                        <a href="https://wa.me/+919553609372" target="_blank" class="theme-btn-1 btn btn-effect-1">
+                            Contact Us
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-xl-6 align-self-center">
+                <div class="row">
+                    <div class="col-12 col-lg-6">
+                        <div class="ltn__category-item ltn__category-item-5 ltn__category-item-5-2 text-center---">
+                            <a href="javascript:void(0)">
+                                <span class="category-icon ms-0">
+                                    <img src="/assets/icons/rings-icon.png" class="img-default" alt="rings icon">
+                                    <img src="/assets/icons/rings-icon-white.png" class="img-white" alt="rings icon">
+                                </span>
+                                <span class="category-title">Affordable & Transparent</span>
+                                <span class="category-brief">
+                                    Quality bike servicing at fair prices, with no hidden charges and complete peace of
+                                    mind.
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6">
+                        <div class="ltn__category-item ltn__category-item-5 ltn__category-item-5-2 text-center---">
+                            <a href="javascript:void(0)">
+                                <span class="category-icon ms-0">
+                                    <img src="/assets/icons/helmet-gear-icon.png" class="img-default"
+                                        alt="helmet gear icon">
+                                    <img src="/assets/icons/helmet-gear-icon-white.png" class="img-white"
+                                        alt="helmet gear icon">
+                                </span>
+                                <span class="category-title">Expert Bike <br> Care</span>
+                                <span class="category-brief">
+                                    Our trained mechanics handle every bike with precision, using professional tools and
+                                    best practices.
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6">
+                        <div class="ltn__category-item ltn__category-item-5 ltn__category-item-5-2 text-center---">
+                            <a href="javascript:void(0)">
+                                <span class="category-icon ms-0">
+                                    <img src="/assets/icons/verified-icon.png" class="img-default" alt="verified icon">
+                                    <img src="/assets/icons/verified-icon-white.png" class="img-white"
+                                        alt="verified icon">
+                                </span>
+                                <span class="category-title">Hassle-Free <br> Experience</span>
+                                <span class="category-brief">
+                                    From booking to service completion, everything is smooth, quick, and
+                                    customer-friendly.
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6">
+                        <div class="ltn__category-item ltn__category-item-5 ltn__category-item-5-2 text-center---">
+                            <a href="javascript:void(0)">
+                                <span class="category-icon ms-0">
+                                    <img src="/assets/icons/headset-mic-icon.png" class="img-default"
+                                        alt="headset mic icon">
+                                    <img src="/assets/icons/headset-mic-icon-white.png" class="img-white"
+                                        alt="headset mic icon">
+                                </span>
+                                <span class="category-title">Quick Support & Emergency Help</span>
+                                <span class="category-brief">
+                                    Facing a breakdown? We’re ready to assist and get you back on the road safely.
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ABOUT US AREA END -->
+
+<!-- ================= PRICING AREA START ================= -->
+<style>
+.pricing-section {
+    padding: 100px 0;
+    background: #f9f9f9;
+}
+
+.pricing-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 40px 30px;
+    text-align: center;
+    transition: 0.3s;
+    border: 1px solid #eee;
+    position: relative;
+}
+
+.pricing-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+}
+
+.pricing-card h3 {
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.price {
+    font-size: 32px;
+    font-weight: 700;
+    color: #e53e3e;
+    margin-bottom: 20px;
+}
+
+.price span {
+    font-size: 14px;
+    color: #666;
+}
+
+.pricing-features {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 30px;
+}
+
+.pricing-features li {
+    padding: 8px 0;
+    font-size: 14px;
+}
+
+.popular-badge {
+    position: absolute;
+    top: -12px;
+    right: 20px;
+    background: #e53e3e;
+    color: #fff;
+    padding: 6px 14px;
+    font-size: 12px;
+    border-radius: 50px;
+}
+
+.pricing-highlight {
+    border: 2px solid #e53e3e;
+}
+</style>
+
+<div class="pricing-section">
+    <div class="container">
+        <div class="section-title-area text-center mb-60">
+            <h6 class="section-subtitle section-subtitle-2">Bike Service Plans</h6>
+            <h2 class="section-title">Affordable Subscription Packages</h2>
+            <p>Choose the perfect maintenance plan for your bike and enjoy doorstep service in Hyderabad.</p>
+        </div>
+
+        <div class="row">
+
+            <!-- Basic Plan -->
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="pricing-card">
+                    <h3>Basic Care</h3>
+                    <div class="price">₹999 <span>/ Service</span></div>
+                    <ul class="pricing-features">
+                        <li>✔ General Inspection</li>
+                        <li>✔ Engine Oil Check</li>
+                        <li>✔ Brake Adjustment</li>
+                        <li>✔ Chain Lubrication</li>
+                        <li>✖ Free Pickup & Drop</li>
+                    </ul>
+                    <a href="#" class="btn theme-btn-1 btn-effect-1 w-100">
+                        Choose Plan
+                    </a>
+                </div>
+            </div>
+
+            <!-- Standard Plan -->
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="pricing-card pricing-highlight">
+                    <div class="popular-badge">Most Popular</div>
+                    <h3>Standard Plus</h3>
+                    <div class="price">₹1,499 <span>/ Service</span></div>
+                    <ul class="pricing-features">
+                        <li>✔ Complete Servicing</li>
+                        <li>✔ Engine Oil Replacement</li>
+                        <li>✔ Brake & Clutch Tuning</li>
+                        <li>✔ Battery Check</li>
+                        <li>✔ Free Pickup & Drop</li>
+                    </ul>
+                    <a href="#" class="btn theme-btn-1 btn-effect-1 w-100">
+                        Choose Plan
+                    </a>
+                </div>
+            </div>
+
+            <!-- Premium Plan -->
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="pricing-card">
+                    <h3>Premium Pro</h3>
+                    <div class="price">₹2,499 <span>/ Quarter</span></div>
+                    <ul class="pricing-features">
+                        <li>✔ 2 Free Services</li>
+                        <li>✔ Free Breakdown Support</li>
+                        <li>✔ Priority Booking</li>
+                        <li>✔ Parts Discount (10%)</li>
+                        <li>✔ Free Pickup & Drop</li>
+                    </ul>
+                    <a href="#" class="btn theme-btn-1 btn-effect-1 w-100">
+                        Choose Plan
+                    </a>
+                </div>
+            </div>
+
+            <!-- Annual Plan -->
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="pricing-card">
+                    <h3>Annual Elite</h3>
+                    <div class="price">₹6,999 <span>/ Year</span></div>
+                    <ul class="pricing-features">
+                        <li>✔ 4 Free Services</li>
+                        <li>✔ 24/7 Emergency Support</li>
+                        <li>✔ 15% Parts Discount</li>
+                        <li>✔ Free Breakdown Recovery</li>
+                        <li>✔ Dedicated Mechanic</li>
+                    </ul>
+                    <a href="#" class="btn theme-btn-1 btn-effect-1 w-100">
+                        Subscribe Now
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- ================= PRICING AREA END ================= -->
+
+
+<!-- TESTIMONIAL AREA START -->
+<div class="ltn__testimonial-area ltn__testimonial-4 pb-70 plr--9 clients_feedback_section">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title-area ltn__section-title-2--- text-center mb-3 mb-md-5">
+                    <h6 class="section-subtitle section-subtitle-2">Our Testimonial</h6>
+                    <h2 class="section-title">Clients Feedback</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ltn__testimonial-slider-4 ltn__testimonial-slider-4-active slick-arrow-1">
+                    <div class="ltn__testimonial-item-5">
+                        <div class="ltn__testimonial-image">
+                            <img src="/assets/images/testimonial/3.png" alt="Shekaran">
+                        </div>
+                        <div class="ltn__testimonial-info">
+                            <p>I booked doorstep bike servicing and the experience was smooth from start to finish. The
+                                mechanic was professional,
+                                transparent, and did a great job. My bike feels brand new again. Highly recommended for
+                                anyone in Hyderabad looking for
+                                reliable bike service.</p>
+                            <h4>Shekaran M</h4>
+                            <h6>Employee</h6>
+                        </div>
+                    </div>
+                    <div class="ltn__testimonial-item-5">
+                        <div class="ltn__testimonial-image">
+                            <img src="/assets/images/testimonial/1.png" alt="Rohit Kumar">
+                        </div>
+                        <div class="ltn__testimonial-info">
+                            <p>I booked doorstep bike servicing and the experience was smooth from start to finish. The
+                                mechanic was professional,
+                                transparent, and did a great job. My bike feels brand new again.</p>
+                            <h4>Rohit Kumar</h4>
+                            <h6>Customer</h6>
+                        </div>
+                    </div>
+
+                    <div class="ltn__testimonial-item-5">
+                        <div class="ltn__testimonial-image">
+                            <img src="/assets/images/testimonial/2.png" alt="Anjali Reddy">
+                        </div>
+                        <div class="ltn__testimonial-info">
+                            <p>The pickup and drop service was very convenient and saved me a lot of time. The team
+                                handled my bike with care and
+                                delivered it in perfect condition.</p>
+                            <h4>Anjali Reddy</h4>
+                            <h6>Customer</h6>
+                        </div>
+                    </div>
+                </div>
+                <ul class="ltn__testimonial-quote-menu d-none d-lg-block">
+                    <li><img src="/assets/images/testimonial/3.png" alt="Quote image"></li>
+                    <li><img src="/assets/images/testimonial/1.png" alt="Quote image"></li>
+                    <li><img src="/assets/images/testimonial/2.png" alt="Quote image"></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ================= FAQ AREA START ================= -->
+<style>
+.faq-section {
+    padding: 100px 0;
+    background: #ffffff;
+}
+
+.faq-item {
+    border: 1px solid #eee;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.faq-question {
+    padding: 18px 20px;
+    cursor: pointer;
+    font-weight: 600;
+    position: relative;
+    background: #f9f9f9;
+}
+
+.faq-question::after {
+    content: "+";
+    position: absolute;
+    right: 20px;
+    font-size: 18px;
+    transition: 0.3s;
+}
+
+.faq-item.active .faq-question::after {
+    content: "-";
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 20px;
+    background: #fff;
+    transition: max-height 0.4s ease, padding 0.3s ease;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 200px;
+    padding: 15px 20px;
+}
+</style>
+
+<div class="faq-section">
+    <div class="container">
+        <div class="section-title-area text-center mb-60">
+            <h6 class="section-subtitle section-subtitle-2">Need Help?</h6>
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <p>Everything you need to know about our doorstep bike services in Hyderabad.</p>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                Do you provide bike service at home anywhere in Hyderabad?
+            </div>
+            <div class="faq-answer">
+                Yes, we provide doorstep bike servicing across Hyderabad. Our mechanics visit your location with complete tools and perform the service professionally at your convenience.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                Are there any hidden charges in your service plans?
+            </div>
+            <div class="faq-answer">
+                No. We follow transparent pricing. Before starting any work, our mechanic explains the service cost clearly. No hidden charges, no surprise billing.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                What if my bike breaks down on the road?
+            </div>
+            <div class="faq-answer">
+                Our Premium and Annual plans include breakdown support. You can call us and our team will assist you quickly to get your bike back on the road safely.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                Why should I choose a subscription plan instead of single service?
+            </div>
+            <div class="faq-answer">
+                Subscription plans save money, give priority booking, and include additional benefits like parts discount and emergency support. It ensures your bike stays in top condition throughout the year.
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+document.querySelectorAll(".faq-question").forEach(function(question) {
+    question.addEventListener("click", function() {
+        const item = this.parentElement;
+
+        document.querySelectorAll(".faq-item").forEach(function(faq) {
+            if (faq !== item) {
+                faq.classList.remove("active");
+            }
+        });
+
+        item.classList.toggle("active");
+    });
+});
+</script>
+<!-- ================= FAQ AREA END ================= -->
+<!-- TESTIMONIAL AREA END -->
+<!-- ================= FLOATING WHATSAPP BUTTON START ================= -->
+<style>
+.whatsapp-float {
+    position: fixed;
+    right: 20px;
+    bottom: 25px;
+    z-index: 9999;
+}
+
+.whatsapp-float a {
+    display: flex;
+    align-items: center;
+    background: #25D366;
+    color: #fff;
+    padding: 12px 18px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    transition: 0.3s;
+    animation: pulse 2s infinite;
+}
+
+.whatsapp-float a:hover {
+    background: #1ebe5d;
+    transform: translateY(-3px);
+}
+
+.whatsapp-icon {
+    width: 22px;
+    height: 22px;
+    margin-right: 8px;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6); }
+    70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+/* Mobile responsive */
+@media (max-width: 576px) {
+    .whatsapp-float a {
+        padding: 12px;
+        border-radius: 50%;
+    }
+    .whatsapp-text {
+        display: none;
+    }
+}
+</style>
+
+<div class="whatsapp-float">
+    <a href="https://wa.me/919553609372" target="_blank">
+        <svg class="whatsapp-icon" viewBox="0 0 32 32" fill="white">
+            <path d="M16 0C7.2 0 0 7.2 0 16c0 2.8.7 5.4 2.1 7.7L0 32l8.5-2.2C10.6 31.3 13.2 32 16 32c8.8 0 16-7.2 16-16S24.8 0 16 0zm0 29.3c-2.4 0-4.7-.6-6.7-1.8l-.5-.3-5 1.3 1.3-4.9-.3-.5c-1.2-2-1.9-4.3-1.9-6.7C3 9 8.9 3 16 3s13 6 13 13-6 13.3-13 13.3zm7.1-9.9c-.4-.2-2.2-1.1-2.5-1.2-.3-.1-.6-.2-.8.2-.2.4-.9 1.2-1.1 1.4-.2.2-.4.3-.8.1-.4-.2-1.7-.6-3.3-2-.8-.7-1.4-1.6-1.6-1.9-.2-.3 0-.5.1-.7.1-.1.3-.4.4-.6.1-.2.2-.4.3-.6.1-.2 0-.5 0-.7 0-.2-.8-1.9-1.1-2.6-.3-.7-.6-.6-.8-.6h-.7c-.2 0-.6.1-.9.4-.3.3-1.2 1.2-1.2 2.9s1.2 3.4 1.4 3.6c.2.2 2.4 3.7 5.9 5.2.8.3 1.4.5 1.9.7.8.2 1.5.2 2 .1.6-.1 2.2-.9 2.5-1.8.3-.9.3-1.6.2-1.8-.1-.2-.3-.3-.7-.5z"/>
+        </svg>
+        <span class="whatsapp-text">Chat With Us</span>
+    </a>
+</div>
+<!-- ================= FLOATING WHATSAPP BUTTON END ================= -->
+@@include('layouts/footer.html', { "active": "home"})
