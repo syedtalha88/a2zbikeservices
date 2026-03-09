@@ -3,7 +3,54 @@
 
 @@include('sections/breadcrumb.html', {"pageTitle": "Services", "breadBg": "servicesBg"})
 
+<style>
+    .process-box{
+background:#fff;
+padding:25px;
+border-radius:12px;
+box-shadow:0 8px 25px rgba(0,0,0,0.08);
+transition:.3s;
+}
 
+.process-box:hover{
+transform:translateY(-5px);
+}
+
+.process-number{
+width:40px;
+height:40px;
+background:#ff6600;
+color:#fff;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+margin:0 auto 15px;
+font-weight:bold;
+}
+
+.why-card{
+background:#f8f9fa;
+padding:30px;
+border-radius:12px;
+transition:.3s;
+}
+
+.why-card:hover{
+background:#fff;
+box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+.service-cta-section{
+background:#ff6600;
+color:#fff;
+margin-bottom: 50px;
+}
+
+.service-cta-section h2{
+color:#fff;
+}
+</style>
 <!-- FEATURE AREA START ( Feature - 6) -->
 <div class="ltn__feature-area section-bg-1 pt-115 pb-90 mb-120---">
     <div class="container">
@@ -19,7 +66,7 @@
             <div class="col-lg-4 col-sm-6 col-12">
                 <div class="ltn__blog-item ltn__blog-item-3 bike_care_card">
                     <div class="ltn__blog-img">
-                        <a href="services.html"><img src="/assets/images/bike-care/bike-care-img-1.png"
+                        <a href="services.html"><img src="/assets/images/bike-care/oilchange.jpeg"
                                 alt="bike care img 1"></a>
                     </div>
                     <div class="ltn__blog-brief">
@@ -28,38 +75,36 @@
                                 Oil Change
                             </a>
                         </h3>
-                        <p>Regular oil changes improve engine performance, fuel efficiency, and longevity. Our mechanics
-                            use high-quality engine
-                            oils and filters to keep your bike running smoothly, reduce wear, and ensure reliable
-                            performance for daily rides and
-                            long journeys.</p>
+                       <p>
+Regular oil changes are essential for maintaining engine health and performance. Our oil change service includes draining old oil, replacing the oil filter, and refilling with high-quality oil to ensure smooth engine operation and extend the life of your bike.</p>
+                         </p>
                     </div>
                 </div>
             </div>
             <div class="col-lg-4 col-sm-6 col-12">
                 <div class="ltn__blog-item ltn__blog-item-3 bike_care_card">
                     <div class="ltn__blog-img">
-                        <a href="services.html"><img src="/assets/images/bike-care/bike-care-img-2.png"
+                        <a href="services.html"><img src="/assets/images/bike-care/carburettor.jpeg"
                                 alt="bike care img 2"></a>
                     </div>
                     <div class="ltn__blog-brief">
                         <h3 class="ltn__blog-title">
                             <a href="services.html">
-                                Battery Change
+                               Carburettor Repair
                             </a>
                         </h3>
-                        <p>We diagnose battery issues and replace worn-out batteries with reliable options to ensure
-                            smooth starts and consistent
-                            electrical performance. Our battery service helps prevent sudden breakdowns and keeps your
-                            bike dependable in all riding
-                            conditions.</p>
+                        <p>
+Our carburettor repair service ensures proper fuel and air mixture for smooth engine performance. 
+We clean, adjust, and repair carburettors to improve mileage, reduce engine knocking, and restore 
+your bike’s optimal power and acceleration.
+</p>
                     </div>
                 </div>
             </div>
             <div class="col-lg-4 col-sm-6 col-12">
                 <div class="ltn__blog-item ltn__blog-item-3 bike_care_card">
                     <div class="ltn__blog-img">
-                        <a href="services.html"><img src="/assets/images/bike-care/bike-care-img-3.png"
+                        <a href="services.html"><img src="/assets/images/bike-care/brake.jpeg"
                                 alt="bike care img 3"></a>
                     </div>
                     <div class="ltn__blog-brief">
@@ -68,9 +113,11 @@
                                 Brake Repair
                             </a>
                         </h3>
-                        <p>Our brake repair service focuses on safety and control by inspecting brake pads, discs, and
-                            fluids. We ensure responsive
-                            braking, reduced noise, and improved stopping power for confident and secure riding.</p>
+                    <p>
+Our bike brake repair service focuses on safety by inspecting brake pads, discs, and brake fluid. 
+We ensure strong braking performance, reduced noise, and improved control so you can ride with 
+confidence and safety on every journey.
+</p>
                     </div>
                 </div>
             </div>
@@ -78,100 +125,178 @@
             <div class="col-lg-4 col-sm-6 col-12">
                 <div class="ltn__blog-item ltn__blog-item-3 bike_care_card">
                     <div class="ltn__blog-img">
-                        <a href="services.html"><img src="/assets/images/bike-care/bike-care-img-4.png"
+                        <a href="services.html"><img src="/assets/images/bike-care/chainadjust.jpeg"
                                 alt="bike care img 4"></a>
                     </div>
                     <div class="ltn__blog-brief">
                         <h3 class="ltn__blog-title">
                             <a href="services.html">
-                                Suspension & Steering
+                               Chain Adjustment 
                             </a>
                         </h3>
-                        <p>We inspect and fine-tune suspension and steering components to enhance stability, comfort,
-                            and handling. Proper
-                            suspension improves ride quality, balance, and control, especially on uneven roads and
-                            longer rides.</p>
+                <p>
+Proper chain adjustment improves power transmission and riding comfort. Our technicians inspect 
+and adjust the bike chain to maintain correct tension, reduce wear, and ensure smooth and efficient 
+bike performance.
+</p>
                     </div>
                 </div>
             </div>
             <div class="col-lg-4 col-sm-6 col-12">
                 <div class="ltn__blog-item ltn__blog-item-3 bike_care_card">
                     <div class="ltn__blog-img">
-                        <a href="services.html"><img src="/assets/images/bike-care/bike-care-img-5.png"
+                        <a href="services.html"><img src="/assets/images/bike-care/engineoverhaul.jpeg"
                                 alt="bike care img 5"></a>
                     </div>
                     <div class="ltn__blog-brief">
                         <h3 class="ltn__blog-title">
                             <a href="services.html">
-                                Tyre & Wheel Services
+Engine Overhaul
                             </a>
                         </h3>
-                        <p>From tyre replacement to wheel alignment and balancing, our service ensures better grip,
-                            smoother rides, and improved
-                            safety. Well-maintained tyres enhance handling, braking efficiency, and overall riding
-                            confidence.</p>
+                       <p>
+Our engine overhaul service restores your bike’s engine performance by repairing internal components 
+and replacing worn-out parts. This service improves engine power, reliability, and fuel efficiency 
+for long-term performance.
+</p>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-sm-6 col-12">
-                <div class="ltn__blog-item ltn__blog-item-3 bike_care_card">
-                    <div class="ltn__blog-img">
-                        <a href="services.html"><img src="/assets/images/bike-care/bike-care-img-6.png"
-                                alt="bike care img 6"></a>
-                    </div>
-                    <div class="ltn__blog-brief">
-                        <h3 class="ltn__blog-title">
-                            <a href="services.html">
-                                Emergency Repairs
-                            </a>
-                        </h3>
-                        <p>Unexpected breakdowns can happen anytime. Our emergency repair service provides quick
-                            diagnostics and effective
-                            solutions to resolve urgent issues and get you safely back on the road without unnecessary
-                            delays.</p>
-                    </div>
-                </div>
-            </div>
+      
 
             <div class="col-lg-4 col-sm-6 col-12">
                 <div class="ltn__blog-item ltn__blog-item-3 bike_care_card">
                     <div class="ltn__blog-img">
-                        <a href="services.html"><img src="/assets/images/bike-care/bike-care-img-7.png"
+                        <a href="services.html"><img src="/assets/images/bike-care/tappetsetting.jpeg"
                                 alt="bike care img 7"></a>
                     </div>
                     <div class="ltn__blog-brief">
                         <h3 class="ltn__blog-title">
                             <a href="services.html">
-                                Pickup And Drop Service
+                               Tappet Service
                             </a>
                         </h3>
-                        <p>For added convenience, we pick up your bike, service it professionally, and deliver it back
-                            to you. This hassle-free
-                            option saves time while ensuring your bike receives expert care.</p>
+                    <p>
+Tappet adjustment ensures proper engine valve timing and reduces engine noise. Our tappet service 
+improves engine efficiency, enhances performance, and ensures smoother bike operation for daily 
+riding.
+</p>
                     </div>
                 </div>
             </div>
             <div class="col-lg-4 col-sm-6 col-12">
                 <div class="ltn__blog-item ltn__blog-item-3 bike_care_card">
                     <div class="ltn__blog-img">
-                        <a href="services.html"><img src="/assets/images/bike-care/bike-care-img-8.png"
+                        <a href="services.html"><img src="/assets/images/bike-care/shockuprepair.jpeg"
                                 alt="bike care img 8"></a>
                     </div>
                     <div class="ltn__blog-brief">
                         <h3 class="ltn__blog-title">
                             <a href="services.html">
-                                Door Steps Services​
+                             Shock Absorber Service
                             </a>
                         </h3>
-                        <p>Our doorstep bike service brings professional maintenance and repairs directly to your home.
-                            With skilled mechanics and
-                            quality tools, we deliver reliable service without the need to visit a workshop.</p>
+                        <p>
+Our shock absorber service improves ride comfort and stability by repairing or replacing worn 
+suspension components. Proper suspension ensures better balance, smoother rides, and improved 
+handling on rough roads.
+</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 col-12">
+                <div class="ltn__blog-item ltn__blog-item-3 bike_care_card">
+                    <div class="ltn__blog-img">
+                        <a href="services.html"><img src="/assets/images/bike-care/washing.jpeg"
+                                alt="bike care img 8"></a>
+                    </div>
+                    <div class="ltn__blog-brief">
+                        <h3 class="ltn__blog-title">
+                            <a href="services.html">
+                            Washing & Cleaning
+                            </a>
+                        </h3>
+                      <p>
+Our professional bike washing and cleaning service removes dirt, grease, and road grime while 
+protecting your bike’s paint and parts. Regular cleaning improves appearance and helps maintain 
+your motorcycle’s condition.
+</p>
                     </div>
                 </div>
             </div>
 
         </div>
     </div>
+</div>
+<!-- SERVICE PROCESS -->
+<div class="service-process pt-100 pb-100 bg-light">
+<div class="container">
+
+<div class="row text-center mb-60">
+<div class="col-lg-12">
+<h6 class="section-subtitle">Service Process</h6>
+<h2 class="section-title">How Our Bike Service Works</h2>
+</div>
+</div>
+
+<div class="row text-center">
+
+<div class="col-md-3">
+<div class="process-box">
+<div class="process-number">1</div>
+<h4>Book Service</h4>
+<p>Choose your required bike service and book online or via phone.</p>
+</div>
+</div>
+
+<div class="col-md-3">
+<div class="process-box">
+<div class="process-number">2</div>
+<h4>Inspection</h4>
+<p>Our mechanic inspects your bike and identifies service needs.</p>
+</div>
+</div>
+
+<div class="col-md-3">
+<div class="process-box">
+<div class="process-number">3</div>
+<h4>Repair & Service</h4>
+<p>We repair and service your bike using quality tools and parts.</p>
+</div>
+</div>
+
+<div class="col-md-3">
+<div class="process-box">
+<div class="process-number">4</div>
+<h4>Ready To Ride</h4>
+<p>Your bike is ready with improved performance and safety.</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+<!-- BOOK SERVICE CTA -->
+<div class="service-cta-section pt-80 pb-80">
+<div class="container">
+
+<div class="row align-items-center">
+
+<div class="col-lg-8">
+<h2>Need Bike Service Today?</h2>
+<p>Book your doorstep bike service now and ride safely.</p>
+</div>
+
+<div class="col-lg-4 text-lg-end">
+<a href="/contact.html" class="btn theme-btn-1 btn-effect-1">
+Book Service Now
+</a>
+</div>
+
+</div>
+
+</div>
 </div>
 <!-- FEATURE AREA END -->
 

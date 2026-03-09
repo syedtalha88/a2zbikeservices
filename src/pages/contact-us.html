@@ -3,91 +3,291 @@
 
 @@include('sections/breadcrumb.html', {"pageTitle": "Contact", "breadBg": "contactBg"})
 
-<!-- CONTACT MESSAGE AREA START -->
-<div class="ltn__contact-message-area pt-115 pb-100 contact_form_section">
+<style>
+    .contact-modern-section {
+        background: #f8fafc;
+    }
+
+    .contact-info-card {
+        background: #0b2a4a;
+        color: white;
+        padding: 40px;
+        border-radius: 20px;
+        height: 100%;
+    }
+    
+    .contact-info-card h3 {
+        font-size: 26px;
+        color: white;
+        margin-bottom: 10px;
+    }
+    
+    .contact-info-card p {
+        color: white;
+        font-size: 14px;
+        margin-bottom: 30px;
+    }
+
+    .contact-info-item {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+        margin-bottom: 18px;
+    }
+
+    .contact-info-item img {
+        width: 22px;
+    }
+
+    .contact-action-buttons {
+        margin-top: 25px;
+        display: flex;
+        gap: 12px;
+    }
+
+    .call-btn {
+        background: #ff6600;
+        padding: 10px 18px;
+        border-radius: 8px;
+        color: white;
+        text-decoration: none;
+    }
+
+    .whatsapp-btn {
+        background: #25D366;
+        padding: 10px 18px;
+        border-radius: 8px;
+        color: white;
+        text-decoration: none;
+    }
+
+
+    /* FORM CARD */
+
+    .contact-form-card {
+        background: white;
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+    }
+
+    .contact-form-card h3 {
+        margin-bottom: 25px;
+    }
+
+    .contact-form-card input,
+    .contact-form-card select,
+    .contact-form-card textarea {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 14px;
+    }
+
+    .contact-form-card textarea {
+        height: 120px;
+        resize: none;
+    }
+
+    .submit-btn {
+        background: #ff6600;
+        color: white;
+        border: none;
+        padding: 12px 22px;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: .3s;
+    }
+
+    .submit-btn:hover {
+        background: #e65500;
+    }
+
+    .quick-contact-section {
+        background: #f8fafc;
+    }
+
+    .quick-contact-box {
+        background: #fff;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        transition: .3s;
+    }
+
+    .quick-contact-box:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+    }
+
+    .service-area-section {
+        background: #ffffff;
+    }
+
+    .service-area-section .col-md-3 {
+        padding: 12px;
+        font-weight: 500;
+    }
+
+    .map-section {
+        margin-top: 50px;
+    }
+</style>
+<div class="contact-modern-section pt-100 pb-100">
     <div class="container">
-        <div class="row contact_form_row">
-            <div class="col-12 col-lg-4 p-0 order-2">
-                <div class="contactus_form_details">
-                    <h4>Reach Out To Us</h4>
-                    <p>Fill out the form, and our team will get in touch with you</p>
-                    <ul class="contact_details">
-                        <li>
-                            <img src="/assets/icons/ringer-icon.png" alt="ringer icon">
-                            <span>+91 95536 09372</span>
-                        </li>
-                        <li>
-                            <img src="/assets/icons/envelope-icon.png" alt="envelope icon">
-                            <span>a2zbikeservices@gmail.com</span>
-                        </li>
-                        <li>
-                            <img src="/assets/icons/location-icon.png" alt="location icon">
-                            <span>
-                                12-2-37/B/10, <br> zeba Bagh, Asif nagar, <br> Hyderabad - 500028 Ts
-                            </span>
-                        </li>
-                    </ul>
-                    <div class="social_details d-none">
-                        <a href="#">
-                            <img src="/assets/icons/fb-icon.png" alt="fb icon">
-                        </a>
-                        <a href="#">
-                            <img src="/assets/icons/insta-icon.png" alt="insta icon">
-                        </a>
-                        <a href="#">
-                            <img src="/assets/icons/twitter-icon.png" alt="twitter icon">
-                        </a>
+
+        <div class="row g-4 align-items-stretch">
+
+            <!-- CONTACT INFO -->
+            <div class="col-lg-4">
+                <div class="contact-info-card">
+
+                    <h3>Reach Out To Us</h3>
+                    <p>Fill out the form and our team will contact you shortly.</p>
+
+                    <div class="contact-info-item">
+                        <img src="/assets/icons/ringer-icon.png">
+                        <span>+91 95536 09372</span>
                     </div>
+
+                    <div class="contact-info-item">
+                        <img src="/assets/icons/envelope-icon.png">
+                        <span>a2zbikeservices@gmail.com</span>
+                    </div>
+
+                    <div class="contact-info-item">
+                        <img src="/assets/icons/location-icon.png">
+                        <span>
+                            12-2-37/B/10, Zeba Bagh,<br>
+                            Asif Nagar, Hyderabad - 500028
+                        </span>
+                    </div>
+
+                    <div class="contact-action-buttons">
+                        <a href="tel:+919553609372" class="call-btn">Call Now</a>
+                        <a href="https://wa.me/919553609372" class="whatsapp-btn">WhatsApp</a>
+                    </div>
+
                 </div>
             </div>
-            <div class="col-12 col-lg-8 p-0 order-lg-2">
-                <div class="ltn__form-box contact-form-box">
-                    <h4>Contact Form</h4>
-                  <form action="https://formsubmit.co/a2zbikeservices@gmail.com" method="POST" id="contact-form" class="contactus_form" novalidate>
+
+
+            <!-- CONTACT FORM -->
+            <div class="col-lg-8">
+                <div class="contact-form-card">
+
+                    <h3>Contact Form</h3>
+
+                    <form action="https://formsubmit.co/a2zbikeservices@gmail.com" method="POST">
+
                         <div class="row">
+
                             <div class="col-md-6">
-                                <div class="input-item input-item-name">
-                                    <input type="text" name="contactname" placeholder="Name *" required>
-                                    <span class="error" id="contactnameError"></span>
-                                </div>
+                                <input type="text" name="contactname" placeholder="Your Name *" required>
                             </div>
+
                             <div class="col-md-6">
-                                <div class="input-item input-item-email">
-                                    <input type="email" name="contactemail" placeholder="Email Id">
-                                    <span class="error" id="contactemailError"></span>
-                                </div>
+                                <input type="email" name="contactemail" placeholder="Email Address">
                             </div>
+
                             <div class="col-md-6">
-                                <div class="input-item input-item-phone">
-                                    <input type="text" name="contactphone" placeholder="Mobile Number *" required>
-                                    <span class="error" id="contactphoneError"></span>
-                                </div>
+                                <input type="text" name="contactphone" placeholder="Mobile Number *" required>
                             </div>
+
                             <div class="col-md-6">
-                                <div class="input-item">
-                                    <select class="nice-select" id="contactservice" required>
-                                        <option>Service *</option>
-                                        <option>Oil Change</option>
-                                        <option>Battery Change</option>
-                                        <option>Brake Repair</option>
-                                    </select>
-                                    <span class="error" id="contactserviceError"></span>
-                                </div>
+                                <select name="service" required>
+                                    <option value="">Select Service</option>
+                                    <option>Oil Change</option>
+                                    <option>Battery Change</option>
+                                    <option>Brake Repair</option>
+                                </select>
                             </div>
+
+                            <div class="col-12">
+                                <textarea name="contactmessage" placeholder="Description"></textarea>
+                            </div>
+
+                            <div class="col-12">
+                                <button class="submit-btn">Send Message</button>
+                            </div>
+
                         </div>
-                        <div class="input-item input-item-textarea">
-                            <textarea name="contactmessage" id="contactmessage" placeholder="Description"></textarea>
-                        </div>
-                        <div class="btn-wrapper mt-0">
-                            <button class="btn theme-btn-1 btn-effect-1" type="submit">
-                                Submit
-                            </button>
-                        </div>
+
                     </form>
+
                 </div>
             </div>
+
+        </div>
+
+    </div>
+</div>
+<!-- QUICK CONTACT ACTION -->
+<div class="quick-contact-section pt-70 pb-70">
+    <div class="container">
+        <div class="row text-center">
+
+            <div class="col-md-4">
+                <div class="quick-contact-box">
+                    <h4>Call Us Now</h4>
+                    <p>Talk directly with our service team</p>
+                    <a href="tel:+919553609372" class="btn theme-btn-1">Call Now</a>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="quick-contact-box">
+                    <h4>WhatsApp Support</h4>
+                    <p>Instant support and service booking</p>
+                    <a href="https://wa.me/919553609372" class="btn theme-btn-1">Chat on WhatsApp</a>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="quick-contact-box">
+                    <h4>Book Service</h4>
+                    <p>Schedule your doorstep bike service</p>
+                    <a href="/services.html" class="btn theme-btn-1">View Services</a>
+                </div>
+            </div>
+
         </div>
     </div>
+</div>
+<!-- SERVICE AREA -->
+<div class="service-area-section pt-70 pb-70 bg-light">
+    <div class="container">
+
+        <div class="row text-center mb-40">
+            <div class="col-lg-12">
+                <h2 class="section-title">Service Coverage Area</h2>
+                <p>We provide doorstep bike servicing across Hyderabad.</p>
+            </div>
+        </div>
+
+        <div class="row text-center">
+
+            <div class="col-md-3">Mehdipatnam</div>
+            <div class="col-md-3">Asif Nagar</div>
+            <div class="col-md-3">Toli Chowki</div>
+            <div class="col-md-3">Masab Tank</div>
+            <div class="col-md-3">Lakdikapul</div>
+            <div class="col-md-3">Banjara Hills</div>
+            <div class="col-md-3">Jubilee Hills</div>
+            <div class="col-md-3">Tolichowki</div>
+
+        </div>
+
+    </div>
+</div>
+<!-- GOOGLE MAP -->
+<div class="map-section">
+    <iframe src="https://www.google.com/maps?q=12-2-37/B/10%20Zeba%20Bagh%20Asif%20Nagar%20Hyderabad&output=embed"
+        width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy">
+    </iframe>
 </div>
 <!-- CONTACT MESSAGE AREA END -->
 
