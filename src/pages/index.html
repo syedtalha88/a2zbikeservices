@@ -1,288 +1,273 @@
 @@include('layouts/header.html', { "active": "home", "pageTitle": "A2Z Bike Services", "pageDescription": "",
 "pageKeywords": "", })
-
-<!-- ================= HIGH CONVERSION OFFER POPUP START ================= -->
 <style>
-.custom-booking-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: none;
-    z-index: 9999;
-}
+     :root {
+            --primary-red: #e53e3e;
+            --gradient-main: linear-gradient(135deg, #ff512f 0%, #dd2476 100%);
+            --text-dark: #1a202c;
+            --text-gray: #4a5568;
+            --bg-input: #f7fafc;
+            --border-color: #edf2f7;
+        }
 
-.custom-booking-overlay {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.75);
-}
+        * { box-sizing: border-box; font-family: 'Inter', sans-serif; }
 
-.custom-booking-content {
-    position: relative;
-    max-width: 480px;
-    background: #ffffff;
-    padding: 40px 30px;
-    margin: auto;
-    top: 50%;
-    transform: translateY(-50%);
-    border-radius: 12px;
-    animation: popupFade 0.4s ease-in-out;
-    text-align: center;
-}
+        /* ================= THE FIX: SCROLLABLE WRAPPER ================= */
+        .custom-booking-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none; /* Controlled by JS */
+            z-index: 10000;
+            
+            /* These three lines fix the "stuck" issue */
+            overflow-y: auto; 
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch; /* Smooth scroll for iOS */
+        }
 
-@keyframes popupFade {
-    from { opacity: 0; transform: translateY(-60%); }
-    to { opacity: 1; transform: translateY(-50%); }
-}
+        /* Flex container inside the scrollable modal to keep content centered */
+        .modal-flex-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100%; /* Important: allows the container to grow taller than the screen */
+            padding: 20px;   /* Space around the modal on mobile */
+        }
 
-.offer-badge {
-    background: #e53e3e;
-    color: #fff;
-    font-weight: 700;
-    padding: 8px 18px;
-    border-radius: 50px;
-    display: inline-block;
-    margin-bottom: 15px;
-    font-size: 14px;
-}
+        .custom-booking-overlay {
+            position: fixed; /* Fixed so it stays behind while you scroll the modal */
+            inset: 0;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(6px);
+            z-index: -1;
+        }
 
-.countdown {
-    font-size: 18px;
-    font-weight: 600;
-    margin-bottom: 20px;
-    color: #e53e3e;
-}
+        /* ================= MODAL CONTENT ================= */
+        .custom-booking-content {
+            position: relative;
+            width: 100%;
+            max-width: 440px;
+            background: #ffffff;
+            padding: 40px 30px;
+            border-radius: 28px;
+            text-align: center;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            animation: modalPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            margin: auto; /* Helps with centering in scrollable area */
+        }
 
-.custom-close-btn {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 26px;
-    border: none;
-    background: none;
-    cursor: pointer;
-}
+        @keyframes modalPop {
+            from { opacity: 0; transform: scale(0.9) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
 
-.custom-booking-content input {
-    width: 100%;
-    padding: 12px 15px;
-    margin-bottom: 5px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
+        /* Elements styling */
+        .custom-close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 34px;
+            height: 34px;
+            background: #f1f5f9;
+            border-radius: 50%;
+            border: none;
+            font-size: 22px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 11;
+        }
 
-.phone-wrapper {
-    display: flex;
-}
+        .offer-image {
+            width: 120px;
+            height: auto;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            border: 3px solid #fff;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
 
-.phone-prefix {
-    background: #f5f5f5;
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-right: none;
-    border-radius: 5px 0 0 5px;
-    font-weight: 600;
-}
+        .offer-badge {
+            display: inline-block;
+            background: #fff5f5;
+            color: var(--primary-red);
+            border: 1px solid #feb2b2;
+            padding: 5px 14px;
+            border-radius: 99px;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
 
-.phone-input {
-    border-radius: 0 5px 5px 0;
-    border-left: none;
-}
+        .custom-booking-content h3 {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin: 0 0 8px 0;
+            line-height: 1.2;
+        }
 
-.error-text {
-    color: red;
-    font-size: 13px;
-    margin-bottom: 10px;
-    display: block;
-}
+        .urgency-text {
+            font-size: 14px;
+            color: var(--text-gray);
+            margin-bottom: 20px;
+        }
 
-.urgency-text {
-    font-size: 13px;
-    margin-bottom: 20px;
-    color: #555;
-}
-/* Popup Box */
-.custom-booking-content {
-    width: 420px;
-    max-width: 95%;
-    padding: 30px 25px;
-    border-radius: 18px;
-    background: #fff;
-    text-align: center;
-}
+        /* Form Inputs */
+        .custom-booking-content input {
+            width: 100%;
+            background: var(--bg-input);
+            border: 1.5px solid var(--border-color);
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 15px;
+            margin-bottom: 4px;
+        }
 
-/* Centered Compact Image */
-.offer-image-wrapper {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 18px;
-}
+        .phone-wrapper { display: flex; margin-bottom: 4px; }
+        .phone-prefix {
+            background: #edf2f7;
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            border-radius: 12px 0 0 12px;
+            font-weight: 700;
+            border: 1.5px solid var(--border-color);
+            border-right: none;
+        }
+        .phone-input { border-top-left-radius: 0 !important; border-bottom-left-radius: 0 !important; }
 
-.offer-image {
-    width: 220px;        /* fixed clean size */
-    height: auto;
-    border-radius: 14px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-}
+        .submit-btn {
+            width: 100%;
+            background: var(--gradient-main);
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 700;
+            text-transform: uppercase;
+            cursor: pointer;
+            margin-top: 10px;
+            box-shadow: 0 8px 15px rgba(221, 36, 118, 0.3);
+        }
 
-/* Offer Badge */
-.offer-badge {
-    display: inline-block;
-    background: linear-gradient(90deg, #ff512f, #dd2476);
-    color: #fff;
-    padding: 7px 18px;
-    border-radius: 30px;
-    font-size: 14px;
-    font-weight: 600;
-    margin-bottom: 18px;
-}
+        .error-text {
+            color: var(--primary-red);
+            font-size: 12px;
+            text-align: left;
+            height: 14px;
+            margin-bottom: 10px;
+            display: block;
+        }
 
-/* Heading */
-.custom-booking-content h3 {
-    font-size: 22px;
-    font-weight: 700;
-    margin-bottom: 10px;
-}
-.custom-booking-content {
-    width: 420px;
-    max-width: 100%;
-    max-height: 90vh;     /* important */
-    overflow-y: auto;     /* enables scroll */
-    background: #fff;
-    border-radius: 18px;
-    padding: 30px 25px;
-}
-/* Paragraph */
-.urgency-text {
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 20px;
-}
-</style>
-
+        /* Prevent background scroll when modal is open */
+        body.modal-open {
+            overflow: hidden;
+        }
+        @media (max-height: 600px) {
+            .custom-booking-content { padding: 30px 20px; }
+            .offer-image { width: 80px; }
+            .custom-booking-content h3 { font-size: 20px; }
+        }
+    </style>
 <div id="bookingPopup" class="custom-booking-modal">
     <div class="custom-booking-overlay"></div>
 
-    <div class="custom-booking-content box-shadow-1">
-        <button class="custom-close-btn" id="closePopup">&times;</button>
-     <div class="offer-image-wrapper">
-    <img src="../assets/images/offer.png" alt="Special Offer" class="offer-image">
-</div>
-        <div class="offer-badge">🔥 FLAT 40% OFF – Today Only</div>
-        <h3>Doorstep Bike Service at Discount Price</h3>
+    <div class="custom-booking-content">
+        <button class="custom-close-btn" id="closePopup" aria-label="Close">&times;</button>
+        
+        <div class="offer-image-wrapper">
+            <img src="../assets/images/offer.png" alt="Special Offer" class="offer-image">
+        </div>
+        
+        <div class="offer-badge">🔥 Limited Time Offer</div>
+        
+        <h3>Get Flat 40% Off Your Bike Service</h3>
         <p class="urgency-text">
-            Limited slots available in Hyderabad. Grab your offer before it expires.
+            Join 500+ riders in Hyderabad who saved this week. 
+            Claim your doorstep service slot now!
         </p>
 
-        <!-- <div class="countdown">
-            Offer Ends In: <span id="timer">05:00</span>
-        </div> -->
-
         <form id="popupBookingForm" novalidate>
-            <input type="text" id="popupName" placeholder="Your Name">
+            <input type="text" id="popupName" placeholder="Full Name">
             <span class="error-text" id="nameError"></span>
 
-            <input type="text" id="popupAddress" placeholder="Your Address">
+            <input type="text" id="popupAddress" placeholder="Service Area / Locality">
             <span class="error-text" id="addressError"></span>
 
             <div class="phone-wrapper">
                 <div class="phone-prefix">+91</div>
                 <input type="tel" id="popupPhone" class="phone-input"
-                       placeholder="10 Digit Mobile Number" maxlength="10">
+                       placeholder="Mobile Number" maxlength="10">
             </div>
             <span class="error-text" id="phoneError"></span>
 
-            <div class="btn-wrapper text-center mt-3">
-                <button type="submit" class="btn theme-btn-1 btn-effect-1 w-100">
-                    Claim 40% Discount Now
-                </button>
-            </div>
+            <button type="submit" class="submit-btn">
+                Claim My 40% Discount
+            </button>
         </form>
     </div>
 </div>
 
-<script>
-document.addEventListener("DOMContentLoaded", function () {
+<script>const modal = document.getElementById('bookingPopup');
+    const closeBtn = document.getElementById('closePopup');
+    const overlay = document.getElementById('overlay');
+    const form = document.getElementById('popupBookingForm');
 
-    const popup = document.getElementById("bookingPopup");
-    const closeBtn = document.getElementById("closePopup");
-    const overlay = document.querySelector(".custom-booking-overlay");
-    const phoneInput = document.getElementById("popupPhone");
-
-    // Show after 20 sec
-    setTimeout(function () {
-        popup.style.display = "block";
-    }, 10000);
-
-    function closePopup() {
-        popup.style.display = "none";
-    }
-
-    closeBtn.addEventListener("click", closePopup);
-    overlay.addEventListener("click", closePopup);
-
-    // Phone only numbers
-    phoneInput.addEventListener("input", function () {
-        this.value = this.value.replace(/\D/g, '');
+    // 1. SHOW MODAL (Auto-open after 2 seconds)
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            modal.style.display = 'flex';
+        }, 2000);
     });
 
-    // Countdown Timer (5 min urgency)
-    let timeLeft = 300;
-    const timer = document.getElementById("timer");
+    // 2. CLOSE MODAL FUNCTIONS
+    const closeModal = () => {
+        modal.style.display = 'none';
+    };
 
-    const countdown = setInterval(function () {
-        let minutes = Math.floor(timeLeft / 60);
-        let seconds = timeLeft % 60;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
-        timer.textContent = minutes + ":" + seconds;
-        timeLeft--;
+    closeBtn.addEventListener('click', closeModal);
+    overlay.addEventListener('click', closeModal);
 
-        if (timeLeft < 0) {
-            clearInterval(countdown);
-            timer.textContent = "Expired";
+    // 3. FORM VALIDATION
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        let isValid = true;
+
+        const name = document.getElementById('popupName');
+        const address = document.getElementById('popupAddress');
+        const phone = document.getElementById('popupPhone');
+
+        // Reset errors
+        document.querySelectorAll('.error-text').forEach(el => el.innerText = '');
+
+        if (name.value.trim() === '') {
+            document.getElementById('nameError').innerText = 'Please enter your name';
+            isValid = false;
         }
-    }, 1000);
 
-    // Form validation
-    document.getElementById("popupBookingForm")
-        .addEventListener("submit", function (e) {
-            e.preventDefault();
+        if (address.value.trim() === '') {
+            document.getElementById('addressError').innerText = 'Address is required';
+            isValid = false;
+        }
 
-            let isValid = true;
-            const name = document.getElementById("popupName").value.trim();
-            const address = document.getElementById("popupAddress").value.trim();
-            const phone = phoneInput.value.trim();
+        if (!/^\d{10}$/.test(phone.value)) {
+            document.getElementById('phoneError').innerText = 'Enter a valid 10-digit number';
+            isValid = false;
+        }
 
-            document.getElementById("nameError").textContent = "";
-            document.getElementById("addressError").textContent = "";
-            document.getElementById("phoneError").textContent = "";
-
-            if (name === "") {
-                document.getElementById("nameError").textContent = "Name is required.";
-                isValid = false;
-            }
-
-            if (address === "") {
-                document.getElementById("addressError").textContent = "Address is required.";
-                isValid = false;
-            }
-
-            if (!/^[0-9]{10}$/.test(phone)) {
-                document.getElementById("phoneError").textContent =
-                    "Mobile number must be exactly 10 digits.";
-                isValid = false;
-            }
-
-            if (isValid) {
-                alert("🎉 Congratulations! Your 40% discount is reserved.");
-                this.reset();
-                closePopup();
-            }
-        });
-});
+        if (isValid) {
+            alert('Discount Claimed Successfully!');
+            closeModal();
+            form.reset();
+        }
+    });
 </script>
 <!-- ================= HIGH CONVERSION OFFER POPUP END ================= -->
 <!-- SLIDER AREA START (slider-3) -->

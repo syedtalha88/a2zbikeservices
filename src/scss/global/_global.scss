@@ -1475,33 +1475,34 @@ ul {
 /* ----------------------------------------------------
     ScrollUp
 ---------------------------------------------------- */
-#scrollUp {
-    background-color: var(--section-bg-1);
-    color: var(--ltn__heading-color);
-    bottom: 70px;
-    font-size: 20px;
-    font-weight: bold;
-    height: 40px;
-    width: 40px;
-    right: 3%;
-    text-align: center;
-    -webkit-transform: rotate(45deg);
-    transform: rotate(45deg);
-    -webkit-transition: all 0.3s ease 0s;
-    transition: all 0.3s ease 0s;
-    box-shadow: var(--ltn__box-shadow-3);
+// #scrollUp {
+//     background-color: var(--section-bg-1);
+//     color: var(--ltn__heading-color);
+//     bottom: 70px;
+//     font-size: 20px;
+//     font-weight: bold;
+//     height: 40px;
+//     width: 40px;
+//     right: 3%;
+//     text-align: center;
+//     -webkit-transform: rotate(45deg);
+//     transform: rotate(45deg);
+//     -webkit-transition: all 0.3s ease 0s;
+//     transition: all 0.3s ease 0s;
+//     box-shadow: var(--ltn__box-shadow-3);
 
-    i {
-        line-height: 40px;
-        -webkit-transform: rotate(-45deg);
-        transform: rotate(-45deg);
-    }
+//     i {
+//         line-height: 40px;
+//         display: none;
+//         -webkit-transform: rotate(-45deg);
+//         transform: rotate(-45deg);
+//     }
 
-    &:hover {
-        background-color: var(--ltn__secondary-color);
-        color: var(--white);
-    }
-}
+//     &:hover {
+//         background-color: var(--ltn__secondary-color);
+//         color: var(--white);
+//     }
+// }
 
 /* ----------------------------------------------------
     Owl Carousel 
