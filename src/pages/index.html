@@ -207,6 +207,15 @@ grid-template-columns:1fr;
             .offer-image { width: 80px; }
             .custom-booking-content h3 { font-size: 20px; }
         }
+          @media (max-width: 560px) {
+                    .slide-item-info{
+                        margin-top: 100px;
+                    }
+                    .whatsapp-float {
+                        margin-right: 0;
+                    }
+
+          }
     </style>
 <div id="bookingPopup" class="custom-booking-modal">
     <div class="custom-booking-overlay"></div>
@@ -340,7 +349,7 @@ grid-template-columns:1fr;
 <!-- SLIDER AREA END -->
 
 <!-- CAR DEALER FORM AREA START -->
-<<div class="ltn__car-dealer-form-area mt--65px mt-50 pb-115---">
+<div class="ltn__car-dealer-form-area mt--65px mt-50 pb-115---">
 <div class="container">
 <div class="row">
 <div class="col-lg-12">
@@ -410,6 +419,54 @@ Book Service Now
 </div>
 </div>
 </div>
+<style>
+    /* form row layout */
+.ltn__car-dealer-form-box{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+/* each field */
+.ltn__car-dealer-form-item{
+    flex:1;
+    min-width:200px;
+}
+
+/* inputs */
+.ltn__car-dealer-form-item input,
+.ltn__car-dealer-form-item select{
+    width:100%;
+    height:55px;
+    padding:0 15px;
+    border:1px solid #ddd;
+    border-radius:6px;
+}
+
+/* button alignment */
+.btn-wrapper{
+    display:flex;
+    align-items:center;
+    height:100%;
+}
+
+.btn-wrapper button{
+    height:55px;
+    padding:0 25px;
+}
+@media (max-width:768px){
+
+.ltn__car-dealer-form-box{
+    flex-direction:column;
+}
+
+.ltn__car-dealer-form-item{
+    width:100%;
+}
+
+}
+</style>
 <!-- CAR DEALER FORM AREA END -->
 
 @@include('sections/aboutus-section-1.html')
@@ -566,10 +623,7 @@ Book Service Now
                             Reliable Bike Service <br /> Made Simple
                         </h2>
                         <p>
-                            At A2Z Bike Services, we focus on convenience, quality, and trust. From routine maintenance
-                            to urgent repairs, we make
-                            bike care easy with doorstep service and skilled professionals—so you can ride worry-free.
-                        </p>
+                    At A2Z Bike Service, we believe trust comes first. Before starting the work, we provide a customer assurance card that includes complete mechanic details, service information, and our contact verification — so you always know who is working on your bike. We ensure timely delivery, clear communication, and transparent pricing with no hidden charges. Our goal is simple — hassle-free bike servicing at your home, roadside, or with free pickup & drop anywhere in Hyderabad. </p>
                     </div>
                     <ul class="ltn__list-item-1 clearfix">
                         <li>Doorstep service across Hyderabad</li>
@@ -739,10 +793,10 @@ Bike breakdown on the road? Our emergency roadside service provides quick assist
                     <div class="price">₹999 <span>/ Service</span></div>
                     <ul class="pricing-features">
                         <li>✔ General Inspection</li>
-                        <li>✔ Engine Oil Check</li>
                         <li>✔ Brake Adjustment</li>
                         <li>✔ Chain Lubrication</li>
-                        <li>✖ Free Pickup & Drop</li>
+                        <li>✖ Engine Oil Check</li>
+                        <!-- <li>✖ Free Pickup & Drop</li> -->
                     </ul>
                     <a href="#" class="btn theme-btn-1 btn-effect-1 w-100">
                         Choose Plan
@@ -754,7 +808,7 @@ Bike breakdown on the road? Our emergency roadside service provides quick assist
             <div class="col-lg-3 col-md-6 mb-4">
                 <div class="pricing-card pricing-highlight">
                     <div class="popular-badge">Most Popular</div>
-                    <h3>Standard Plus</h3>
+                    <h3>General Service gold </h3>
                     <div class="price">₹1,499 <span>/ Service</span></div>
                     <ul class="pricing-features">
                         <li>✔ Complete Servicing</li>
@@ -788,22 +842,7 @@ Bike breakdown on the road? Our emergency roadside service provides quick assist
             </div>
 
             <!-- Annual Plan -->
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="pricing-card">
-                    <h3>Annual Elite</h3>
-                    <div class="price">₹6,999 <span>/ Year</span></div>
-                    <ul class="pricing-features">
-                        <li>✔ 4 Free Services</li>
-                        <li>✔ 24/7 Emergency Support</li>
-                        <li>✔ 15% Parts Discount</li>
-                        <li>✔ Free Breakdown Recovery</li>
-                        <li>✔ Dedicated Mechanic</li>
-                    </ul>
-                    <a href="#" class="btn theme-btn-1 btn-effect-1 w-100">
-                        Subscribe Now
-                    </a>
-                </div>
-            </div>
+   
 
         </div>
     </div>
@@ -847,7 +886,7 @@ Bike breakdown on the road? Our emergency roadside service provides quick assist
                             <p>I booked doorstep bike servicing and the experience was smooth from start to finish. The
                                 mechanic was professional,
                                 transparent, and did a great job. My bike feels brand new again.</p>
-                            <h4>Rohit Kumar</h4>
+                            <h4>Anjali Reddy</h4>
                             <h6>Customer</h6>
                         </div>
                     </div>
@@ -860,7 +899,7 @@ Bike breakdown on the road? Our emergency roadside service provides quick assist
                             <p>The pickup and drop service was very convenient and saved me a lot of time. The team
                                 handled my bike with care and
                                 delivered it in perfect condition.</p>
-                            <h4>Anjali Reddy</h4>
+                            <h4>Rohit Kumar</h4>
                             <h6>Customer</h6>
                         </div>
                     </div>
@@ -1031,11 +1070,16 @@ document.querySelectorAll(".faq-question").forEach(function(question) {
 @media (max-width: 576px) {
     .whatsapp-float a {
         padding: 12px;
-        border-radius: 50%;
+        border-radius: 20%;
+        margin-right: 0;
     }
     .whatsapp-text {
         display: none;
     }
+    .whatsapp-icon{
+        margin-right: 0;
+    }
+
 }
 </style>
 
