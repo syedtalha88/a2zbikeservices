@@ -9,7 +9,39 @@
             --bg-input: #f7fafc;
             --border-color: #edf2f7;
         }
+.homepage_form{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:15px;
+align-items:center;
+}
 
+.homepage_form input,
+.homepage_form select{
+height:48px;
+border-radius:8px;
+border:1px solid #ddd;
+padding:0 12px;
+font-size:14px;
+}
+
+.homepage_form button{
+height:48px;
+border-radius:8px;
+font-weight:600;
+}
+
+@media(max-width:992px){
+.homepage_form{
+grid-template-columns:1fr 1fr;
+}
+}
+
+@media(max-width:576px){
+.homepage_form{
+grid-template-columns:1fr;
+}
+}
         * { box-sizing: border-box; font-family: 'Inter', sans-serif; }
 
         /* ================= THE FIX: SCROLLABLE WRAPPER ================= */
@@ -308,51 +340,75 @@
 <!-- SLIDER AREA END -->
 
 <!-- CAR DEALER FORM AREA START -->
-<div class="ltn__car-dealer-form-area mt--65px mt-50 pb-115---">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="ltn__car-dealer-form-tab">
-                    <div class="tab-content bg-white box-shadow-1 ltn__border position-relative">
-                        <div class="tab-pane fade active show" id="ltn__form_tab_1_1">
-                            <div class="car-dealer-form-inner">
-                                <form action="https://formsubmit.co/a2zbikeservices@gmail.com" method="POST"id="homePageForm" class="homepage_form ltn__car-dealer-form-box">
-                                    <div class="ltn__car-dealer-form-item ltn__custom-icon---- ltn__icon-car----">
-                                        <input type="text" name="contactname" id="contactname" placeholder="Name">
-                                        <span class="error" id="contactnameError"></span>
-                                    </div>
-                                    <div class="ltn__car-dealer-form-item ltn__custom-icon---- ltn__icon-meter----">
-                                        <input type="text" name="contactphone" id="contactphone"
-                                            placeholder="Mobile Number">
-                                        <span class="error" id="contactphoneError"></span>
-                                    </div>
-                                    <div class="ltn__car-dealer-form-item ltn__custom-icon---- ltn__icon-meter----">
-                                        <input type="text" name="contactemail" id="contactemail" placeholder="Email">
-                                        <span class="error" id="contactemailError"></span>
-                                    </div>
-                                    <div class="ltn__car-dealer-form-item ltn__custom-icon---- ltn__icon-calendar----">
-                                        <select class="nice-select" id="contactservice">
-                                            <option>Select Service</option>
-                                            <option>Oil Change</option>
-                                            <option>Battery Change</option>
-                                            <option>Brake Repair</option>
-                                        </select>
-                                        <span class="error" id="contactserviceError"></span>
-                                    </div>
-                                    <div class="ltn__car-dealer-form-item ltn__custom-icon ltn__icon-calendar">
-                                        <div class="btn-wrapper text-center mt-0">
-                                            <button type="submit" class="btn theme-btn-1 btn-effect-1">
-                                                Book Now</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<<div class="ltn__car-dealer-form-area mt--65px mt-50 pb-115---">
+<div class="container">
+<div class="row">
+<div class="col-lg-12">
+
+<div class="ltn__car-dealer-form-tab">
+
+<div class="tab-content bg-white box-shadow-1 ltn__border position-relative">
+
+<div class="tab-pane fade active show">
+
+<div class="car-dealer-form-inner">
+
+<form action="https://formsubmit.co/a2zbikeservices@gmail.com" method="POST" id="homePageForm" class="homepage_form ltn__car-dealer-form-box">
+
+<!-- NAME -->
+<div class="ltn__car-dealer-form-item">
+<input type="text" name="contactname" id="contactname" placeholder="Your Name">
+<span class="error" id="contactnameError"></span>
+</div>
+
+<!-- PHONE -->
+<div class="ltn__car-dealer-form-item">
+<input type="text" name="contactphone" id="contactphone" placeholder="Mobile Number">
+<span class="error" id="contactphoneError"></span>
+</div>
+
+<!-- ADDRESS -->
+<div class="ltn__car-dealer-form-item">
+<input type="text" name="contactaddress" id="contactaddress" placeholder="Your Address">
+<span class="error" id="contactaddressError"></span>
+</div>
+
+<!-- SERVICE -->
+<div class="ltn__car-dealer-form-item">
+<select class="nice-select" id="contactservice" name="contactservice">
+<option>Select Service</option>
+<option>Oil Change</option>
+<option>Carburettor Repair</option>
+<option>Brake Repair</option>
+<option>Chain Adjustment</option>
+<option>Engine Overhaul</option>
+<option>Tappet Service</option>
+<option>Shock Absorber Service</option>
+<option>Bike Washing</option>
+</select>
+<span class="error" id="contactserviceError"></span>
+</div>
+
+<!-- BUTTON -->
+<div class="ltn__car-dealer-form-item">
+<div class="btn-wrapper text-center mt-0">
+<button type="submit" class="btn theme-btn-1 btn-effect-1">
+Book Service Now
+</button>
+</div>
+</div>
+
+</form>
+
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+</div>
+</div>
 </div>
 <!-- CAR DEALER FORM AREA END -->
 
@@ -771,7 +827,7 @@
                 <div class="ltn__testimonial-slider-4 ltn__testimonial-slider-4-active slick-arrow-1">
                     <div class="ltn__testimonial-item-5">
                         <div class="ltn__testimonial-image">
-                            <img src="/assets/images/testimonial/3.png" alt="Shekaran">
+                            <img src="/assets/images/testimonial/testinominal1.jpeg" alt="Shekaran">
                         </div>
                         <div class="ltn__testimonial-info">
                             <p>I booked doorstep bike servicing and the experience was smooth from start to finish. The
@@ -785,7 +841,7 @@
                     </div>
                     <div class="ltn__testimonial-item-5">
                         <div class="ltn__testimonial-image">
-                            <img src="/assets/images/testimonial/1.png" alt="Rohit Kumar">
+                            <img src="/assets/images/testimonial/testinominal2.jpeg" alt="Rohit Kumar">
                         </div>
                         <div class="ltn__testimonial-info">
                             <p>I booked doorstep bike servicing and the experience was smooth from start to finish. The
@@ -798,7 +854,7 @@
 
                     <div class="ltn__testimonial-item-5">
                         <div class="ltn__testimonial-image">
-                            <img src="/assets/images/testimonial/2.png" alt="Anjali Reddy">
+                            <img src="/assets/images/testimonial/testinominal3.jpeg" alt="Anjali Reddy">
                         </div>
                         <div class="ltn__testimonial-info">
                             <p>The pickup and drop service was very convenient and saved me a lot of time. The team
@@ -810,9 +866,9 @@
                     </div>
                 </div>
                 <ul class="ltn__testimonial-quote-menu d-none d-lg-block">
-                    <li><img src="/assets/images/testimonial/3.png" alt="Quote image"></li>
-                    <li><img src="/assets/images/testimonial/1.png" alt="Quote image"></li>
-                    <li><img src="/assets/images/testimonial/2.png" alt="Quote image"></li>
+                    <li><img src="/assets/images/testimonial/testinominal1.jpeg" alt="Quote image"></li>
+                    <li><img src="/assets/images/testimonial/testinominal2.jpeg" alt="Quote image"></li>
+                    <li><img src="/assets/images/testimonial/testinominal3.jpeg" alt="Quote image"></li>
                 </ul>
             </div>
         </div>
